@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Data Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b1a;--panel:#10172e;--line:#243056;--text:#eaf0ff;--mute:#9aa8d0;--violet:#8b6cff;--aqua:#2de2c8;--coral:#ff6b8a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f6ff;--panel:#fff;--line:#d5dbf5;--text:#12172e;--mute:#566089;--violet:#5a3df0;--aqua:#00907e;--coral:#d63a62}}
+:root[data-theme="light"]{--bg:#f4f6ff;--panel:#fff;--line:#d5dbf5;--text:#12172e;--mute:#566089;--violet:#5a3df0;--aqua:#00907e;--coral:#d63a62}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.05rem/1.6 'Instrument Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Syne',system-ui,sans-serif;line-height:1.05;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--aqua);outline-offset:3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;gap:1.5rem;justify-content:flex-end;padding:calc(1rem + env(safe-area-inset-top,0px)) 1.5rem 1rem;backdrop-filter:blur(10px)}
+nav a{text-decoration:none;color:var(--mute);font-weight:500}nav a:hover{color:var(--aqua)}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:6rem 1.5rem 3rem;overflow:hidden}
+#scene{position:absolute;inset:0;width:100%;height:100%}
+.hero-copy{position:relative;max-width:46rem;margin-inline:auto 0;margin-left:max(1.5rem,6vw)}
+.hero h1{font-size:clamp(2.8rem,9vw,6.5rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 span{display:block;background:linear-gradient(90deg,var(--violet),var(--aqua),var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:flow 6s linear infinite}
+@keyframes flow{to{background-position:200% center}}
+.hero p{max-width:34rem;color:var(--mute);font-size:1.2rem}
+.btn{display:inline-block;margin:.5rem .75rem 0 0;padding:.8rem 1.4rem;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-weight:600;transition:transform .2s,background .2s}
+.btn.main{background:var(--violet);border-color:var(--violet);color:#fff}.btn:hover{transform:translateY(-2px)}
+section{padding:6rem 1.5rem;max-width:68rem;margin:auto}
+section h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;margin-bottom:1rem}
+.lead{color:var(--mute);max-width:38rem;margin-bottom:2rem}
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.tab{font:600 .95rem 'Instrument Sans',sans-serif;color:var(--mute);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.55rem 1.1rem;cursor:pointer;transition:all .2s}
+.tab[aria-selected="true"]{color:#fff;background:linear-gradient(90deg,var(--violet),var(--coral));border-color:transparent}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.25rem;border-bottom:1px solid var(--line)}
+.panel-head p{margin:0;color:var(--mute);font-size:.95rem}
+.copy{font:600 .85rem 'Instrument Sans',sans-serif;background:var(--aqua);color:#04120f;border:0;border-radius:8px;padding:.5rem .9rem;cursor:pointer;white-space:nowrap}
+pre{margin:0;padding:1.25rem;overflow-x:auto;font:400 .9rem/1.6 'JetBrains Mono',monospace;color:var(--text);tab-size:2}
+.skills{display:flex;flex-wrap:wrap;gap:.6rem}
+.skills span{border:1px solid var(--line);background:var(--panel);padding:.5rem 1rem;border-radius:10px;transition:border-color .2s,transform .2s}
+.skills span:hover{border-color:var(--aqua);transform:translateY(-3px)}
+footer{padding:4rem 1.5rem 5rem;text-align:center;color:var(--mute)}
+@media (prefers-reduced-motion:reduce){.hero h1 span{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav aria-label="Main"><a href="#work">Code</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
+
+<header class="hero">
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="hero-copy">
+<h1>I build the pipelines<span>your data runs on.</span></h1>
+<p>Hi, I'm Tia, a data engineer. Move the mouse to spin the data network, then grab code you can use right now.</p>
+<a class="btn main" href="#work">Browse copy-ready code</a><a class="btn" href="#contact">Get in touch</a>
+</div>
+</header>
+
+<section id="work">
+<h2>Code you can copy</h2>
+<p class="lead">Pick a tool. Each snippet solves one common data engineering task and is ready to paste.</p>
+<div class="tabs" role="tablist" aria-label="Code examples" id="tabs"></div>
+<div class="panel" role="tabpanel" id="panel">
+<div class="panel-head"><p id="desc"></p><button class="copy" id="copy">Copy code</button></div>
+<pre><code id="code"></code></pre>
+</div>
+</section>
+
+<section id="skills">
+<h2>What I work with</h2>
+<p class="lead">More tech skills loading.</p>
+<div class="skills" id="skillList"></div>
+</section>
+
+<section id="contact">
+<h2>Let's talk</h2>
+<p class="lead">See my email, LinkedIn and GitHub links here.</p>
+<a class="btn main" href="mailto:you@example.com">Email me</a><a class="btn" href="#">LinkedIn</a><a class="btn" href="#">GitHub</a>
+</section>
+<footer>Built with blood, sweat, and many monster engery drinks.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const snippets=[
+{n:'SQL',d:'Latest record per customer using a window function.',c:`WITH ranked AS (
+  SELECT *,
+    ROW_NUMBER() OVER (
+      PARTITION BY customer_id
+      ORDER BY updated_at DESC
+    ) AS rn
+  FROM raw.customers
+)
+SELECT * EXCEPT (rn)
+FROM ranked
+WHERE rn = 1;`},
+{n:'PySpark',d:'Clean a dataset and write it as partitioned Parquet.',c:`from pyspark.sql import SparkSession, functions as F
+
+spark = SparkSession.builder.appName("clean_orders").getOrCreate()
+
+df = (spark.read.option("header", True).csv("s3://bucket/raw/orders/")
+      .dropDuplicates(["order_id"])
+      .withColumn("order_date", F.to_date("order_date"))
+      .filter(F.col("amount") > 0))
+
+df.write.mode("overwrite").partitionBy("order_date").parquet("s3://bucket/clean/orders/")`},
+{n:'Airflow',d:'A daily DAG with extract, transform and load tasks.',c:`from airflow import DAG
+from airflow.operators.python import PythonOperator
+from datetime import datetime
+
+def extract(): ...
+def transform(): ...
+def load(): ...
+
+with DAG("daily_etl", start_date=datetime(2026, 1, 1),
+         schedule="@daily", catchup=False) as dag:
+    e = PythonOperator(task_id="extract", python_callable=extract)
+    t = PythonOperator(task_id="transform", python_callable=transform)
+    l = PythonOperator(task_id="load", python_callable=load)
+    e >> t >> l`},
+{n:'Data quality',d:'Fail fast when a table has nulls or duplicates.',c:`import pandas as pd
+
+def check(df: pd.DataFrame, key: str, required: list[str]):
+    assert df[key].is_unique, f"Duplicate values in {key}"
+    for col in required:
+        nulls = df[col].isna().sum()
+        assert nulls == 0, f"{nulls} nulls in {col}"
+    return True`}];
+const tabs=document.getElementById('tabs'),code=document.getElementById('code'),desc=document.getElementById('desc'),cp=document.getElementById('copy');
+function show(i){[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',i===j));code.textContent=snippets[i].c;desc.textContent=snippets[i].d}
+snippets.forEach((s,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=s.n;b.onclick=()=>show(i);tabs.appendChild(b)});
+show(0);
+cp.onclick=async()=>{try{await navigator.clipboard.writeText(code.textContent);cp.textContent='Copied'}catch(e){const r=document.createRange();r.selectNodeContents(code);getSelection().removeAllRanges();getSelection().addRange(r);cp.textContent='Press Ctrl+C'}setTimeout(()=>cp.textContent='Copy code',1800)};
+['Python','SQL','Spark','Airflow','dbt','Snowflake','AWS','Docker','Kafka','Git', 'HTML', 'CSS', 'Excel', 'Power BI'].forEach(t=>{const s=document.createElement('span');s.textContent=t;document.getElementById('skillList').appendChild(s)});
+
+if(window.Lenis){const l=new Lenis({lerp:.08});(function r(t){l.raf(t);requestAnimationFrame(r)})(0);
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();l.scrollTo(t)}}))}
+else document.documentElement.style.scrollBehavior='smooth';
+
+if(window.THREE){
+const cv=document.getElementById('scene'),R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true}),S=new THREE.Scene(),C=new THREE.PerspectiveCamera(55,1,.1,100);
+C.position.z=7;R.setPixelRatio(Math.min(devicePixelRatio,2));
+const g=new THREE.Group();S.add(g);
+const core=new THREE.Mesh(new THREE.IcosahedronGeometry(2,1),new THREE.MeshBasicMaterial({color:0x8b6cff,wireframe:true,transparent:true,opacity:.55}));g.add(core);
+const N=700,p=new Float32Array(N*3);
+for(let i=0;i<N;i++){const r=3+Math.random()*2.5,a=Math.random()*6.283,b=Math.acos(2*Math.random()-1);p[i*3]=r*Math.sin(b)*Math.cos(a);p[i*3+1]=r*Math.sin(b)*Math.sin(a);p[i*3+2]=r*Math.cos(b)}
+const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(p,3));
+const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x2de2c8,size:.045}));g.add(pts);
+const ring=new THREE.Mesh(new THREE.TorusGeometry(3.2,.012,8,120),new THREE.MeshBasicMaterial({color:0xff6b8a}));ring.rotation.x=1.2;g.add(ring);
+let mx=0,my=0,sy=0;
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+addEventListener('scroll',()=>sy=scrollY/innerHeight);
+function size(){const h=cv.parentElement;R.setSize(h.clientWidth,h.clientHeight,false);C.aspect=h.clientWidth/h.clientHeight;C.updateProjectionMatrix();g.position.x=h.clientWidth>800?2.6:0}
+addEventListener('resize',size);size();
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+(function loop(){g.rotation.y+=(calm?0:.0025)+(mx*.02-.0)*.1;g.rotation.x+=(my*.6-g.rotation.x+sy*.8)*.04;pts.rotation.y-=calm?0:.0012;ring.rotation.z+=calm?0:.006;
+g.scale.setScalar(Math.max(.4,1-sy*.5));R.render(S,C);requestAnimationFrame(loop)})();
+}
+</script>
+</body>
+</html>
